@@ -3,9 +3,8 @@ import { FaPaperPlane, FaPlay, FaTimes } from "react-icons/fa";
 import config from "../config";
 import "./HomePage.css";
 
-// const CURRENT_USER = localStorage.getItem("currentUser"); // Replace with actual logged-in user
-
-const HomePage = ({ CURRENT_USER }) => {
+const HomePage = ({ user }) => {
+  const CURRENT_USER = user? user.username : null;
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [newComments, setNewComments] = useState({});
@@ -194,7 +193,7 @@ const HomePage = ({ CURRENT_USER }) => {
 
     const url = `${config.API_BASE_URL}/${videoId}/comment?comment=${encodeURIComponent(
       commentText
-    )}&commentedBy=${encodeURIComponent(CURRENT_USER || "unknown")}`;
+    )}&commentedBy=${encodeURIComponent(CURRENT_USER)}`;
 
     try {
       const response = await fetch(url, { method: "POST" });
@@ -294,33 +293,38 @@ const HomePage = ({ CURRENT_USER }) => {
               <strong>Uploaded by:</strong> {video.username}
             </p>
 
-            <div className="add-comment">
-              <input
-                type="text"
-                placeholder="Add a comment..."
-                value={newComments[video.id] || ""}
-                onChange={(e) => handleCommentChange(video.id, e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") handleCommentSubmit(video.id);
-                }}
-              />
-              <button className="submit-icon-btn" onClick={() => handleCommentSubmit(video.id)}>
-                <FaPaperPlane />
-              </button>
-            </div>
+            {CURRENT_USER && (
+              <div className="add-comment">
+                <input
+                  type="text"
+                  placeholder="Add a comment..."
+                  value={newComments[video.id] || ""}
+                  onChange={(e) => handleCommentChange(video.id, e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") handleCommentSubmit(video.id);
+                  }}
+                />
+                <button className="submit-icon-btn" onClick={() => handleCommentSubmit(video.id)}>
+                  <FaPaperPlane />
+                </button>
+              </div>
+            )}
 
             <div className="comments">
               <strong>Comments:</strong>
-              {video.comments && video.comments.length > 0 && (
+              {video.comments && video.comments.length > 0 ? (
                 <ul className="comments-list">
                   {video.comments.map((c, i) => (
                     <li key={i}>
-                      <em>{c.commentedBy || "unKnown"}</em>: {c.comment}
+                      <em>{c.commentedBy || "Unknown"}</em>: {c.comment}
                     </li>
                   ))}
                 </ul>
+              ) : (
+                <p>No comments added yet.</p>
               )}
             </div>
+
           </div>
         </div>
       ))}

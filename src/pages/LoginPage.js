@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";  // Added Link
 import "./LoginPage.css";
+import config from "../config";
 
 const LoginPage = ({ onLoginSuccess }) => {
   const [username, setUsername] = useState("");
@@ -13,7 +14,7 @@ const LoginPage = ({ onLoginSuccess }) => {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:8080/api/users/login", {
+      const response = await fetch(`${config.API_USER_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

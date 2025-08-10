@@ -1,4 +1,4 @@
-const HOST = "http://localhost:8080"
+const HOST = "http://44.222.206.59:8080"
 
 const config = {
   API_BASE_URL: HOST + "/api/videos",
