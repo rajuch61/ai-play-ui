@@ -1,0 +1,89 @@
+.register-container {
+  max-width: 420px;
+  margin: 3rem auto;
+  padding: 2rem 2.5rem;
+  border-radius: 10px;
+  background: #f0f4f8;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 1.8rem;
+  color: #222;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.register-error {
+  background-color: #ffe0e0;
+  color: #d8000c;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.register-success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.register-form {
+  /* optional: prevent form from stretching too wide */
+  width: 100%;
+}
+
+.register-form .form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.3rem;
+  gap: 1rem; /* space between label and input */
+}
+
+.register-form label {
+  flex: 0 0 120px; /* fixed width for labels */
+  font-weight: 600;
+  color: #333;
+  /* text-align: right; */
+}
+
+.register-form input {
+  flex: 1; /* input takes remaining width */
+  padding: 10px 14px;
+  border: 1.8px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.register-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.register-button {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #007bff;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+  background-color: #0056b3;
+}

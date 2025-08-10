@@ -1,0 +1,120 @@
+/* UploadVideo.css */
+.upload-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ccc;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-row label {
+  flex: 0 0 120px;
+  font-weight: 600;
+}
+
+.form-row input[type="text"],
+.form-row textarea,
+.form-row input[type="file"] {
+  flex: 1;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+}
+
+.form-row textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.upload-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.upload-btn:hover {
+  background-color: #2563eb;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* MyPlaylist.css */
+.myplaylist-container {
+  padding: 10px;
+}
+
+.playlist-section {
+  margin-bottom: 30px;
+}
+
+.playlist-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+
+.uploading-indicator {
+  font-size: 0.9rem;
+  color: #d97706; /* amber */
+}
+
+.retry-btn {
+  background: #ef4444; /* red */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.retry-btn:hover {
+  background: #b91c1c;
+}
+
+.videos-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.video-card {
+  width: 320px;
+  background: white;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.video-info {
+  padding: 8px;
+}
+
+.video-info h4 {
+  margin: 0 0 6px 0;
+}
+
+.video-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #444;
+}

@@ -12,7 +12,8 @@ const Sidebar = ({ isExpanded, className, isLoggedIn }) => {
           {!isLoggedIn && (
             <li>
               <Link to="/login">
-                {isExpanded ? "Login" : <FaUser size={20} />}
+                <FaUser size={20} />
+                {isExpanded && <span style={{ marginLeft: 8 }}>Login</span>}
               </Link>
             </li>
           )}
@@ -20,7 +21,8 @@ const Sidebar = ({ isExpanded, className, isLoggedIn }) => {
           {/* Always visible */}
           <li>
             <Link to="/">
-              {isExpanded ? "Home" : <FaHome size={20} />}
+              <FaHome size={20} />
+              {isExpanded && <span style={{ marginLeft: 8 }}>Home</span>}
             </Link>
           </li>
 
@@ -29,19 +31,21 @@ const Sidebar = ({ isExpanded, className, isLoggedIn }) => {
             <>
               <li>
                 <Link to="/playlist">
-                  {isExpanded ? "My Playlist" : <FaListUl size={20} />}
+                  <FaListUl size={20} />
+                  {isExpanded && <span style={{ marginLeft: 8 }}>My Playlist</span>}
                 </Link>
               </li>
               <li>
                 <Link to="/upload">
-                  {isExpanded ? "Upload Video" : <FaUpload size={20} />}
+                  <FaUpload size={20} />
+                  {isExpanded && <span style={{ marginLeft: 8 }}>Upload Video</span>}
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/logout">
                   {isExpanded ? "Logout" : <FaSignOutAlt size={20} />}
                 </Link>
-              </li>
+              </li> */}
             </>
           )}
         </ul>

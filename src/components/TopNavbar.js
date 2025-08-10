@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaPlayCircle, FaSearch, FaMicrophone } from "react-icons/fa";
+import UserProfilePanel from "./UserProfilePanel";
 import "./TopNavbar.css";
 
-const TopNavbar = ({ toggleSidebar }) => {
+const TopNavbar = ({ toggleSidebar, currentUser, onLogout }) => {
+  const [showProfile, setShowProfile] = useState(false);
+  const profileRef = useRef(null);
+
+  // Close panel when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setShowProfile(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <header className="top-navbar">
       <div className="topnavbar-left">
@@ -36,10 +51,23 @@ const TopNavbar = ({ toggleSidebar }) => {
         </div>
       </div>
 
-      <div className="topnavbar-right">
-        <button className="user-icon" aria-label="User Profile">
-          👤
-        </button>
+      <div className="topnavbar-right" ref={profileRef}>
+        {currentUser ? (
+          <>
+            <button
+              className="user-icon"
+              aria-label="User Profile"
+              onClick={() => setShowProfile((prev) => !prev)}
+            >
+              👤
+            </button>
+            {showProfile && (
+              <UserProfilePanel user={currentUser} onLogout={onLogout} />
+            )}
+          </>
+        ) : (
+          <div></div>
+        )}
       </div>
     </header>
   );

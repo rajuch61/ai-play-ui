@@ -1,0 +1,50 @@
+.user-profile-panel {
+  position: absolute;
+  top: 60px; /* adjust to match your navbar height */
+  right: 15px; /* align with the user icon */
+  width: 250px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  z-index: 2000;
+  transform: translateY(-20px);
+  opacity: 0;
+  animation: slideDown 0.25s ease forwards;
+}
+
+.user-info {
+  margin-bottom: 12px;
+}
+
+.user-info h3 {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+}
+
+.user-info p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.logout-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.logout-btn:hover {
+  background: #e63939;
+}
+
+@keyframes slideDown {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
