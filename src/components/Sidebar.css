@@ -1,0 +1,60 @@
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background-color: #f5f5f5;  /* light background */
+  color: #333;                /* dark text for contrast */
+  transition: width 0.3s ease;
+  overflow-y: auto;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgb(0 0 0 / 0.1);
+}
+
+/* When collapsed, keep the same bg and color */
+.sidebar-collapsed {
+  width: 60px;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li {
+  padding: 12px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar nav ul li a {
+  color: #333;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700; /* changed from 500 to 700 for bold */
+}
+
+.sidebar nav ul li:hover {
+  background-color: #ddd;  /* subtle lighter hover background */
+  color: #000;             /* darker text on hover */
+}
+
+.sidebar nav ul li:hover a {
+  color: #000;
+  font-weight: 800;
+}
+
+/* Optional: style icons (if needed) */
+.sidebar nav ul li a svg {
+  color: #555;             /* icon color */
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.sidebar nav ul li:hover a svg {
+  color: #000;             /* icon color on hover */
+}

@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import TopNavbar from "./components/TopNavbar";
+import Sidebar from "./components/Sidebar";
+import AppRoutes from "./Routes";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [sidebarExpanded, setSidebarExpanded] = useState(false); // collapsed by default
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-layout">
+      <TopNavbar toggleSidebar={() => setSidebarExpanded(!sidebarExpanded)} />
+      <div className="content-wrapper">
+        <Sidebar
+          isExpanded={sidebarExpanded}
+          className={`sidebar ${sidebarExpanded ? "" : "sidebar-collapsed"}`}
+          isLoggedIn={isLoggedIn}
+        />
+        <main className="app-content">
+          <AppRoutes />
+        </main>
+      </div>
     </div>
   );
-}
+};
 
 export default App;

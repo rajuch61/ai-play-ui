@@ -1,0 +1,154 @@
+.video-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.video-card {
+  width: 320px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.video-info {
+  padding: 8px 0;
+}
+
+/* Title and like/dislike horizontally aligned */
+.title-and-likes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* video name left, buttons right */
+  gap: 12px;
+}
+
+.title-and-likes h3 {
+  margin: 0;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* Likes/Dislikes */
+.likes-dislikes {
+  display: flex;
+  gap: 8px;
+}
+
+.likes-dislikes button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.likes-dislikes button:hover:not(:disabled) {
+  background-color: #eee;
+}
+
+.likes-dislikes button.active {
+  color: #007bff;
+  font-weight: 700;
+  cursor: default;
+}
+
+/* Description */
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.description.expanded {
+  -webkit-line-clamp: unset;
+  white-space: normal;
+}
+
+/* See more button */
+.see-more-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+/* Comment input */
+.add-comment {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.add-comment input[type="text"] {
+  flex-grow: 1;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.add-comment input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+.submit-icon-btn {
+  background-color: #007bff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.2s;
+}
+
+.submit-icon-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Comments list below comment box with scroll */
+.comments {
+  margin-top: 12px;
+}
+
+.comments-list {
+  max-height: 120px; /* adjust scroll height */
+  overflow-y: auto;
+  padding-left: 12px;
+  margin-top: 4px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fafafa;
+}
+
+.comments-list li {
+  padding: 4px 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+  color: #333;
+}
+
+.comments-list li:last-child {
+  border-bottom: none;
+}
