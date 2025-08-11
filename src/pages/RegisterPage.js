@@ -13,18 +13,52 @@ const RegisterPage = () => {
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
+  // Helper function to validate password with special char and number
+  const validatePassword = (pwd) => {
+    // At least one number
+    const hasNumber = /\d/.test(pwd);
+    // At least one special character (non-alphanumeric)
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(pwd);
+    return hasNumber && hasSpecialChar;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setSuccess("");
 
+    // Length validations
+    if (name.length <= 6) {
+      setError("Name must be more than 6 characters.");
+      return;
+    }
+    if (username.length <= 6) {
+      setError("Username must be more than 6 characters.");
+      return;
+    }
+    if (/\s/.test(username)) {
+      setError("Username must not contain spaces.");
+      return;
+    }
+    if (password.length <= 6) {
+      setError("Password must be more than 6 characters.");
+      return;
+    }
+
+    // Password content validation
+    if (!validatePassword(password)) {
+      setError("Password must contain at least one special character and one number.");
+      return;
+    }
+
+    // Passwords match check
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
 
     try {
-      const response = await fetch(`${config.API_USER_URL}/login`, {
+      const response = await fetch(`${config.API_USER_URL}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, username, email, password }),

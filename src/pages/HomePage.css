@@ -2,11 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   /* gap: 20px; */
-  justify-content: space-between;
+  justify-content: start;
 }
 
 .video-card {
-  width: 350px;
+  width: 330px !important;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
@@ -22,21 +22,23 @@
 /* Title and like/dislike horizontally aligned */
 .title-and-likes {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-between; /* video name left, buttons right */
-  gap: 12px;
+  gap: 10px; /* some gap between */
 }
 
 .title-and-likes h3 {
+  flex: 1 1 auto;        /* allow to shrink */
   margin: 0;
-  font-size: 18px;
-  flex-shrink: 0;
+  white-space: nowrap;   /* prevent multi-line */
+  overflow: hidden;
+  text-overflow: ellipsis;  /* show ... when too long */
 }
 
-/* Likes/Dislikes */
 .likes-dislikes {
+  flex: 0 0 auto; /* fixed width based on content */
   display: flex;
-  gap: 8px;
+  gap: 5px;
 }
 
 .likes-dislikes button {
@@ -90,43 +92,128 @@
 
 /* Comment input */
 .add-comment {
-  margin-top: 12px;
-  display: flex;
-  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
 }
 
-.add-comment input[type="text"] {
-  flex-grow: 1;
-  padding: 8px 12px;
-  font-size: 14px;
-  border: 1px solid #ccc;
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px; /* or whatever max width you want */
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px 40px 10px 12px; /* right padding for icon */
   border-radius: 20px;
-  outline: none;
-  transition: border-color 0.2s;
+  border: 1.5px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
 }
 
-.add-comment input[type="text"]:focus {
+.input-wrapper input:focus {
   border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-.submit-icon-btn {
-  background-color: #007bff;
+.submit-icon-btn.inside-input {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #007bff;
   border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.submit-icon-btn.inside-input:hover {
+  background: #0056b3;
+}
+
+.comment-share-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 600px; /* optional max width */
+  margin-top: 8px;
+}
+
+.add-comment {
+  flex: 1; /* takes all available space */
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px 40px 10px 12px; /* right padding for submit button inside */
+  border-radius: 20px;
+  border: 1.5px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.input-wrapper input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.submit-icon-btn.inside-input {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #007bff;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.submit-icon-btn.inside-input:hover {
+  background: #0056b3;
+}
+
+.share-btn {
+  background: #28a745;
   border-radius: 50%;
   width: 36px;
   height: 36px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
   font-size: 18px;
-  transition: background-color 0.2s;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  flex-shrink: 0;
 }
 
-.submit-icon-btn:hover {
-  background-color: #0056b3;
+.share-btn:hover {
+  background: #1e7e34;
 }
+
 
 /* Comments list below comment box with scroll */
 .comments {

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FaPaperPlane, FaPlay, FaTimes } from "react-icons/fa";
+import { FaShareAlt, FaPaperPlane, FaPlay, FaTimes } from "react-icons/fa";
 import config from "../config";
 import "./HomePage.css";
 
@@ -110,6 +110,24 @@ const HomePage = ({ user }) => {
     }
   };
 
+  const handleVideoShare = (videoUrl) => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Check out this video",
+          text: "Watch this awesome video!",
+          url: videoUrl,
+        })
+        .then(() => console.log("Shared successfully"))
+        .catch((error) => console.error("Error sharing:", error));
+    } else {
+      // Fallback for browsers that do not support Web Share API
+      // For example, copy to clipboard
+      navigator.clipboard.writeText(videoUrl)
+        .then(() => alert("Video link copied to clipboard!"))
+        .catch(() => alert("Failed to copy link"));
+    }
+  };
   /* ------------------ open expanded player ------------------ */
   const openExpandedPlayer = (video) => {
     // stop preview for that video (avoid double-play)
@@ -292,20 +310,35 @@ const HomePage = ({ user }) => {
             <p>
               <strong>Uploaded by:</strong> {video.username}
             </p>
-
             {CURRENT_USER && (
-              <div className="add-comment">
-                <input
-                  type="text"
-                  placeholder="Add a comment..."
-                  value={newComments[video.id] || ""}
-                  onChange={(e) => handleCommentChange(video.id, e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") handleCommentSubmit(video.id);
-                  }}
-                />
-                <button className="submit-icon-btn" onClick={() => handleCommentSubmit(video.id)}>
-                  <FaPaperPlane />
+              <div className="comment-share-wrapper">
+                <div className="add-comment">
+                  <div className="input-wrapper">
+                    <input
+                      type="text"
+                      placeholder="Add a comment..."
+                      value={newComments[video.id] || ""}
+                      onChange={(e) => handleCommentChange(video.id, e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") handleCommentSubmit(video.id);
+                      }}
+                    />
+                    <button
+                      className="submit-icon-btn inside-input"
+                      onClick={() => handleCommentSubmit(video.id)}
+                      aria-label="Submit comment"
+                    >
+                      <FaPaperPlane />
+                    </button>
+                  </div>
+                </div>
+                <button
+                  className="submit-icon-btn share-btn"
+                  onClick={() => handleVideoShare(video.fileUrl)}
+                  aria-label="Share video"
+                  title="Share Video"
+                >
+                  <FaShareAlt />
                 </button>
               </div>
             )}
